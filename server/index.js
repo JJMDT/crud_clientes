@@ -55,6 +55,25 @@ app.put("/update", (req, res) => {
   );
 });
 
+//delete
+app.delete("/delete/:id_cliente", (req, res) => {
+  const id_cliente = req.params.id_cliente;
+
+
+  db.query(
+    "delete from clientes where id_cliente=?",
+    [id_cliente],
+    (err, result) => {
+      if (err) {
+        console.error("Error al insertar en la base de datos:", err);
+        res.status(500).send("Error al procesar la solicitud");
+      } else {
+        res.send("Cliente eliminado con éxito");
+      }
+    }
+  );
+});
+
 
 
 
